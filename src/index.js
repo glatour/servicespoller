@@ -1,5 +1,3 @@
-[ 'Use Redux', 'Read the docs' ]
-
 import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -12,7 +10,6 @@ let store = configureStore();
 // store.subscribe(() =>
 //   console.log(store.getState()));
 
-ReactDOM.render(
-  <Provider store={store}>
+ReactDOM.render(<Provider store={ store }>
     <App />
   </Provider>, document.getElementById('app'));
