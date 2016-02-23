@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 // let yeomanImage = require('../images/settings.svg');
-
+let settingsIcon = require('../images/settings.svg')
 class Settings extends React.Component {
 
   render() {
@@ -34,8 +34,8 @@ class Settings extends React.Component {
 
     return (<div className={ panelClass }>
               <div className="settings-icon">
-                <div className="settings-icon-content" onClick={toggleSettings}>
-                  <img src="images/settings.svg" />
+                <div className="settings-icon-content" onClick={ toggleSettings }>
+                  <img src={ settingsIcon } />
                 </div>
                   <div className="settings-icon-fill">
                   </div>

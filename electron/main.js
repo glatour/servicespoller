@@ -8,18 +8,7 @@ app.on('window-all-closed', function() {
     app.quit();
 });
 
-require('../server')();
-// var express = require('express');
-// var app2 = express();
-//
-// app2.get('/', function (req, res) {
-//  res.send('Hello World!');
-// });
-//
-// app2.listen(3000, function () {
-//  console.log('Example app listening on port 3000!');
-// });
-
+require('../server')(false);
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({
@@ -27,11 +16,11 @@ app.on('ready', function() {
   "web-preferences": {
     "node-integration": false
   },
-	width: 600,
-	height: 400});
+	width: 1024,
+	height: 768});
 
-	mainWindow.loadURL('http://localhost:3000/index.html');
-  mainWindow.openDevTools();
+	mainWindow.loadURL('http://localhost:3017/index.html');
+//  mainWindow.openDevTools();
 
   mainWindow.on('closed', function() {
     mainWindow = null;

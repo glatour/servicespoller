@@ -1,5 +1,3 @@
-//http://notjoshmiller.com/ajax-polling-in-react-with-redux/
-
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
@@ -16,10 +14,7 @@ const mapDispatchToProps = (dispatch) => {
 
 class PollerComponent extends React.Component {
   componentWillReceiveProps(nextProps) {
-    console.log(this.props);
     this.interval = this.props.settings.interval;
-    //if(!!this.props.interval)
-      //this.interval = parseInt(this.props.interval);
     clearTimeout(this.timeout);
     if (!nextProps.isFetching) {
       this.startPoll();
@@ -35,8 +30,10 @@ class PollerComponent extends React.Component {
   }
 
   startPoll() {
-    this.timeout = setTimeout(() => {
-      this.props.dataActions.fetchData()}, this.interval);
+    if(this.interval >= 200){
+      this.timeout = setTimeout(() => {
+        this.props.dataActions.fetchData()}, this.interval);
+    }
   }
 
   render() {

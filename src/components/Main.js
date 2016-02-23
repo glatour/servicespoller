@@ -21,7 +21,7 @@ class AppComponent extends React.Component {
       <div>
         <div className="container">
           <h1>Service Monitor</h1>
-          <Poller interval='30000' />
+          <Poller interval='5000' />
           <ServicesContainer />
         </div>
         <Settings />

@@ -58,9 +58,11 @@ function settings(state = {}, action){
 }
 
 function extractData(data, path){
-  let extractedData = data
+  let extractedData = data;
+  if(data !== '')
+    extractedData = JSON.parse(data)
   if(!!path && path != '')
-    extractedData = jsonPath({path: path, json: data})
+    extractedData = jsonPath({path: path, json: extractedData})
   return extractedData
 }
 

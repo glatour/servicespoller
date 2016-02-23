@@ -4,16 +4,16 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from '../reducers/reducers';
 
 const initialState = {
-  count: 3,
+  count: 1,
   services: [
     {
-      url: '/api/data',
+      url: 'http://api.tvmaze.com/search/shows?q=batman',
       data: {},
     }
   ],
   settings: {
     openState: false,
-    interval: 5000
+    interval: 1000
   }
 }
 
@@ -25,7 +25,6 @@ export default function () {
     initialState,
     compose(applyMiddleware(
       thunkMiddleware
-      //loggerMiddleware
     ),
     window.devToolsExtension ? window.devToolsExtension() : f => f)
   )

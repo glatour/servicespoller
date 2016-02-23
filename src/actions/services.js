@@ -1,3 +1,5 @@
+var request = require('then-request');
+
 export const DATA_FETCHED = 'DATA_FETCHED'
 function dataFetched(index, url, json) {
   return {
@@ -22,9 +24,11 @@ export function fetchData() {
     for (var i = 0; i < services.length; i++) {
       (function(i) {
         const url = services[i].url;
-        fetch(url)
-          .then(response => response.json())
-          .then(json => dispatch(dataFetched(i, url, json)))
+        if(url !== ''){
+          request('GET', '/api/invoke/' + url).done(function (res) {
+            dispatch(dataFetched(i, url, res.getBody()))
+          });
+        }
       })(i)
     }
   }
@@ -34,14 +38,13 @@ export function forceFetchData(index) {
   return function (dispatch, getState) {
     const services = getState().services;
     const url = services[index].url;
-    fetch('/api/invoke/' + url)
-      .then(response => {
-        if(response.status === 200)
-          return response.json()
-        return null;
-      })
-      .then(json => dispatch(dataFetched(index, url, json)))
-      .catch(e => console.log(e.message))
+    console.log(url);
+    if(url !== ''){
+      request('GET', '/api/invoke/' + url).done(function (res) {
+        var b = res.getBody();
+        dispatch(dataFetched(index, url, res.getBody()))
+      });
+    }
   }
 }
 
